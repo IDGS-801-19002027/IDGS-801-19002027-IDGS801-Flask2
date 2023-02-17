@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{%block content%}
+
+<div class="col-xs-6">
+    {% from "_macros.html" import render_field %}
+    <form action="" method="post">
+        <div class="row control-group">
+            <div class="form-group">
+                {{ render_field(form.numero) }}
+            </div>
+            <input type="submit" value="Agregar cajas">
+        </div>
+    </form>
+    <form action="/resultados">
+        <!-- <h3>Número: {{num}}</h3> -->
+        {% for i in range(0, num) %}
+        {{ render_field(form.cajasVacias) }}
+        {% endfor %}
+        <input type="submit" value="Calcular">
+    </form>
+</div>
+
+
+{%endblock%}
