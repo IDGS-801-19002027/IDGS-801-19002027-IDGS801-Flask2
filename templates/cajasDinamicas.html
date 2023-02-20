@@ -1,25 +1,35 @@
 {% extends "layout.html" %}
 
-{%block content%}
+{% block content %}
 
 <div class="col-xs-6">
-    {% from "_macros.html" import render_field %}
-    <form action="" method="post">
-        <div class="row control-group">
-            <div class="form-group">
-                {{ render_field(form.numero) }}
+    <form class="from-horizontal" name="form1" action="/cajasDinamicas" method="post">
+        <div class="control-group">
+            <label for="numero" class="control-label">Número de Cajas :</label>
+            <div class="controls">
+                <input type="number" name="numero" value={{num}}>
             </div>
-            <input type="submit" value="Agregar cajas">
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-default btn-primary">
+                    <i class="icon-book icon-white"></i> Mostrar cajas
+                </button>
+            </div>
         </div>
     </form>
-    <form action="/resultados">
-        <!-- <h3>Número: {{num}}</h3> -->
-        {% for i in range(0, num) %}
-        {{ render_field(form.cajasVacias) }}
+    {% from "_macros.html" import render_cajas %}
+
+    {% if num > 0 %}
+    <form class="from-horizontal" name="form2" action="/resultados" method="post">
+        {% for n in range(num) %} 
+        <div class="control-group">
+            {{ render_cajas(n) }}
+        </div>
         {% endfor %}
-        <input type="submit" value="Calcular">
+        <input class="btn btn-secondary btn-lg" type="submit" value="Calcular">
     </form>
+    {% endif %}
 </div>
 
-
-{%endblock%}
+{% endblock %}

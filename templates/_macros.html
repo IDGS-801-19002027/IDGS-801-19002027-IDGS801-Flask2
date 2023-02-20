@@ -19,3 +19,20 @@
     </div>
 
 {% endmacro %}
+
+{%macro render_cajas(numero)%}
+<div class="form-group">
+  <label for="numero{{numero+1}}" class="control-label">Número {{numero+1}} :</label>
+  <input type="number", name="numero{{numero+1}}" value=0>
+</div>
+{%endmacro%}
+
+{%macro render_simple_text(type, result)%}
+<p>El {{type}} es: {{result}} </p>
+{%endmacro%}
+
+{%macro repeat_nums(repeat)%}
+  {%if repeat[1] > 1%}
+  <p>El número {{repeat[0]}} se repitió {{repeat[1]}} veces. </p>
+  {%endif%}
+{%endmacro%}

@@ -12,5 +12,5 @@ class UserForm(Form):
     email = EmailField('Correo')
 
 class BoxForm(Form):
-    numero = IntegerField('Numero')
-    cajasVacias = IntegerField('Numero')
+    numero = IntegerField('Número')
+    cajasVacias = StringField('Número')

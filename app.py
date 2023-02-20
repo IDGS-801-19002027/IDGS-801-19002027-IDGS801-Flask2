@@ -10,29 +10,43 @@ def calcular():
 
 @app.route("/cajasDinamicas",methods=['GET', 'POST'])
 def cajasDinamicas():
-    reg_cajas = forms.BoxForm(request.form)
+    #reg_cajas = forms.BoxForm(request.form)
     num = 0
     if request.method == 'POST':
-        # Con la propiedad data se obtiene el valor del campo
-        num = reg_cajas.numero.data
+        # Con la propiedad data se obtiene el valor del campo num = reg_cajas.numero.data
+        num = int(request.form.get('numero'))
 
-    return render_template("cajasDinamicas.html", form=reg_cajas, num = num)
+    return render_template("cajasDinamicas.html", num = num)
 
-@app.route("/resultados",methods=['GET','POST'])
+@app.route("/resultados", methods=['GET','POST'])
 def resultados():
-    prom = 0
-    min = 0
-    max = 0
-    if request.method == 'POST':
-        
-        print(prom)
-        print(min)  
-        n1 = request.form['cajasVacias']
+    
+    numeros = []
+    numRepetidos = []
+    cantNumeros = []
+    st = ""
+    suma= 0
+    # Mostrar la lista de todos los números
+    for num in request.form:
+            numeros.append(int(request.form.get(num)))
 
-        
-    return render_template("resultados.html", prom = prom, max = max, min = min)
-
-
+    # Promedio
+    for num in numeros:
+        suma = suma + num
+    
+    totalNumeros = len(numeros)
+    promedio = suma / totalNumeros
+    # Números repetidos
+    for i in numeros:
+        veces = int(numeros.count(i))
+        if veces > 1:  
+            if i not in numRepetidos:
+                numRepetidos.append(i)
+                cantNumeros.append(veces)
+                st += str(i)+"-->"+str(veces)+" veces"
+    
+    
+    return render_template("resultados.html", numeros = numeros, st=st, promedio = promedio, minNum=min(numeros), maxNum=max(numeros))
 
 @app.route("/Alumnos", methods=['GET', 'POST'])
 def alumnos():
