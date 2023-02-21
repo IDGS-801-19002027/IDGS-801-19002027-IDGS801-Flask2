@@ -43,7 +43,7 @@ def resultados():
             if i not in numRepetidos:
                 numRepetidos.append(i)
                 cantNumeros.append(veces)
-                st += str(i)+"-->"+str(veces)+" veces"
+                st += str(i)+"-->"+str(veces)+" veces, "
     
     
     return render_template("resultados.html", numeros = numeros, st=st, promedio = promedio, minNum=min(numeros), maxNum=max(numeros))
@@ -53,7 +53,7 @@ def alumnos():
     reg_alum = forms.UserForm(request.form)
     mat = ''
     nom = ''
-    if request.method == 'POST':
+    if request.method == 'POST' and reg_alum.validate():
         # Con la propiedad data se obtiene el valor del campo
         mat = reg_alum.matricula.data
         nom = reg_alum.nombre.data
