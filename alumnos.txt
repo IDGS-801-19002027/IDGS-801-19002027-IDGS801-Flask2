@@ -2,3 +2,13 @@ Diana
 Paulina
 Evelin
 Noe
+
+def buscar(archivo, parametro):
+    with open(archivo, 'r') as f:
+        lineas = f.readlines()
+        for linea in lineas:
+            datos = linea.split()
+            if datos[0] == parametro:
+                return linea.strip()
+            elif datos[1] == parametro:
+                return linea.strip()

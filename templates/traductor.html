@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{%block content%}
+
+<div class="col-xs-6">
+    <form class="from-horizontal" name="form1" action="/Traductor" method="post">
+        <div class="control-group">
+            <label for="ing" class="control-label">Inglés :</label>
+            <div class="controls">
+                <input type="text" name="ing">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="esp" class="control-label">Español :</label>
+            <div class="controls">
+                <input type="text" name="esp">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-default btn-primary">
+                    <i class="icon-home icon-white"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+    <form class="from-horizontal" name="form2" action="/buscarPalabras" method="post">
+        <div class="control-group">
+            <fieldset>
+                <legend>Selecciona el idioma para traducir</legend>
+                <input type="radio" id="ingR" name="opcion" value="ingR">
+                <label for="ingR">Inglés</label>
+                <input type="radio" id="espR" name="opcion" value="espR">
+                <label for="espR">Español</label>
+            </fieldset>
+        </div>
+        <div class="control-group">
+            <label for="word" class="control-label">Ingrese la palabra :</label>
+            <div class="controls">
+                <input type="text" name="word">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-default btn-primary">
+                    <i class="icon-book icon-white"></i> Buscar palabra
+                </button>
+            </div>
+        </div>
+    </form>
+    <h5>La palabra traducida es: {{ word }} </h5>
+</div>
+
+{%endblock%}
